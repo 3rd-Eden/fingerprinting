@@ -18,8 +18,9 @@ describe('fingerprinting', function () {
     });
 
     assume(print).is.a('object');
-    assume(print).has.length(1);
+    assume(print).has.length(2);
     assume(print.file).equals(md5 +'.dev.js');
+    assume(print.id).equals(md5);
   });
 
   it('includes a filename for the map', function () {
@@ -29,17 +30,19 @@ describe('fingerprinting', function () {
     });
 
     assume(print).is.a('object');
-    assume(print).has.length(2);
+    assume(print).has.length(3);
     assume(print.file).equals(md5 +'.dev.js');
     assume(print.map).equals(md5 +'.dev.map');
+    assume(print.id).equals(md5);
   });
 
   it('reads the source of the filename if no content is supplied', function () {
     var print = finger(fixture);
 
     assume(print).is.a('object');
-    assume(print).has.length(1);
+    assume(print).has.length(2);
     assume(print.file).equals(md5 +'.dev.js');
+    assume(print.id).equals(md5);
   });
 
   it('generates different suffixes based on the NODE_ENV', function () {
@@ -50,8 +53,9 @@ describe('fingerprinting', function () {
     });
 
     assume(print).is.a('object');
-    assume(print).has.length(1);
+    assume(print).has.length(2);
     assume(print.file).equals(md5 +'.min.js');
+    assume(print.id).equals(md5);
 
     process.env.NODE_ENV = '';
   });
@@ -63,8 +67,9 @@ describe('fingerprinting', function () {
     });
 
     assume(print).is.a('object');
-    assume(print).has.length(1);
+    assume(print).has.length(2);
     assume(print.file).equals(md5 +'.test.js');
+    assume(print.id).equals(md5);
   });
 
   it('generates filesnames based on the supplied format', function () {
@@ -74,7 +79,8 @@ describe('fingerprinting', function () {
     });
 
     assume(print).is.a('object');
-    assume(print).has.length(1);
+    assume(print.id).equals(md5);
     assume(print.file).equals('foo-'+ md5 +'-generated.js');
+    assume(print).has.length(2);
   });
 });

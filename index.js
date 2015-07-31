@@ -49,9 +49,10 @@ module.exports = function fingerprinting(file, options) {
     , result = {};
 
   hash.update(options.content);
+  result.id = hash.digest('hex');
 
   print = print.replace('{suffix}', env[options.env] || 'dev');
-  print = print.replace('{hash}', hash.digest('hex'));
+  print = print.replace('{hash}', result.id);
 
   //
   // Generate result structure and filenames.
