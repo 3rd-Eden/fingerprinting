@@ -1,6 +1,6 @@
 {
   "name": "fingerprinting",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Produce a unique string for any given resource, commonly used in cache busting practices.",
   "main": "index.js",
   "scripts": {
